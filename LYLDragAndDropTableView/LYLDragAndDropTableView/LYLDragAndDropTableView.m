@@ -1,12 +1,12 @@
 //
-//  DragAndDropTableView.m
-//  DragAndDropTableView
+//  LYLDragAndDropTableView.m
+//  LYLDragAndDropTableView
 //
-//  Created by Erik Johansson on 4/1/13.
-//  Copyright (c) 2013 Erik Johansson. All rights reserved.
+//  Created by 李灯涛 on 27/7/17.
+//   Copyright © 2017年 李灯涛. All rights reserved.
 //
 
-#import "DragAndDropTableView.h"
+#import "LYLDragAndDropTableView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Snapshot.h"
 
@@ -41,7 +41,7 @@ const static CGFloat kAutoScrollingThreshold = 60;
 
 
 
-@implementation DragAndDropTableView
+@implementation LYLDragAndDropTableView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -208,7 +208,7 @@ const static CGFloat kAutoScrollingThreshold = 60;
         _cellSnapShotImageView.center = CGPointMake(_cellSnapShotImageView.center.x, _latestTouchPoint.y + _touchOffset.y);
 
         if([self.delegate respondsToSelector:@selector(tableView:willBeginDraggingCellAtIndexPath:placeholderImageView:)])
-            [((NSObject<DragAndDropTableViewDelegate> *)self.delegate) tableView:self willBeginDraggingCellAtIndexPath:_movingIndexPath placeholderImageView:_cellSnapShotImageView];
+            [((NSObject<LYLDragAndDropTableViewDelegate> *)self.delegate) tableView:self willBeginDraggingCellAtIndexPath:_movingIndexPath placeholderImageView:_cellSnapShotImageView];
         
         [self reloadRowsAtIndexPaths:[NSArray arrayWithObject:_movingIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
@@ -316,19 +316,19 @@ const static CGFloat kAutoScrollingThreshold = 60;
         UITableViewCell *cell = [self cellForRowAtIndexPath:_movingIndexPath];
 
         if([self.delegate respondsToSelector:@selector(tableView:didEndDraggingCellAtIndexPath:toIndexPath:placeHolderView:)])
-            [((NSObject<DragAndDropTableViewDelegate> *)self.delegate) tableView:self didEndDraggingCellAtIndexPath:_originIndexPath toIndexPath:_movingIndexPath placeHolderView:_cellSnapShotImageView];
+            [((NSObject<LYLDragAndDropTableViewDelegate> *)self.delegate) tableView:self didEndDraggingCellAtIndexPath:_originIndexPath toIndexPath:_movingIndexPath placeHolderView:_cellSnapShotImageView];
         
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         // keeping deprecated call for backwards compatibility
         if([self.delegate respondsToSelector:@selector(tableView:didEndDraggingCellToIndexPath:placeHolderView:)])
-            [((NSObject<DragAndDropTableViewDelegate> *)self.delegate) tableView:self didEndDraggingCellToIndexPath:_movingIndexPath placeHolderView:_cellSnapShotImageView];
+            [((NSObject<LYLDragAndDropTableViewDelegate> *)self.delegate) tableView:self didEndDraggingCellToIndexPath:_movingIndexPath placeHolderView:_cellSnapShotImageView];
 #pragma clang diagnostic pop
         
         // remove image
         BOOL respondsToAnimateDraggedCells = [self.dataSource respondsToSelector:@selector(tableViewShouldAnimateDraggedCells:)];
         if(!respondsToAnimateDraggedCells ||
-           (respondsToAnimateDraggedCells && [((NSObject<DragAndDropTableViewDataSource> *)self.dataSource) tableViewShouldAnimateDraggedCells:self]))
+           (respondsToAnimateDraggedCells && [((NSObject<LYLDragAndDropTableViewDataSource> *)self.dataSource) tableViewShouldAnimateDraggedCells:self]))
         {
             [UIView animateWithDuration:.3 animations:^{
                 NSIndexPath *ipx = [self indexPathForCell:cell];
@@ -574,7 +574,7 @@ const static CGFloat kAutoScrollingThreshold = 60;
         else
             height = tableView.rowHeight;
     else if([_delegate respondsToSelector:@selector(tableView:heightForEmptySection:)])
-        height = [((NSObject<DragAndDropTableViewDelegate> *)_delegate) tableView:(DragAndDropTableView *)tableView heightForEmptySection:indexPath.section];
+        height = [((NSObject<LYLDragAndDropTableViewDelegate> *)_delegate) tableView:(LYLDragAndDropTableView *)tableView heightForEmptySection:indexPath.section];
     else
         height = 0;
 

@@ -10,4 +10,10 @@
 
 @interface LYLDataModel : NSObject
 
+@property(nonatomic, copy) NSString * title;
+
+@property(nonatomic, copy) NSString * message;
+
+
+
 @end

@@ -1,9 +1,9 @@
 //
-//  DragAndDropTableView.h
-//  DragAndDropTableView
+//  LYLDragAndDropTableView.h
+//  LYLDragAndDropTableView
 //
-//  Created by Erik Johansson on 4/1/13.
-//  Copyright (c) 2013 Erik Johansson. All rights reserved.
+//  Created by 李灯涛 on 28/7/17.
+//   Copyright © 2017年 李灯涛. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,9 +11,9 @@
 
 @class ProxyDataSource;
 @class ProxyDelegate;
-@class DragAndDropTableView;
+@class LYLDragAndDropTableView;
 
-@protocol DragAndDropTableViewDataSource <NSObject>
+@protocol LYLDragAndDropTableViewDataSource <NSObject>
 @optional
 /**
  Asks the datasource if new sections can be created by dragging the cell outside of the table view. At the moment there is only support for appending new sections to the end of the table. If the method is not implemented the table view will assume that no new sections should be created.
@@ -27,10 +27,10 @@
  
  @param tableView The table view providing this information.
  */
--(BOOL)tableViewShouldAnimateDraggedCells:(DragAndDropTableView *)tableView;
+-(BOOL)tableViewShouldAnimateDraggedCells:(LYLDragAndDropTableView *)tableView;
 @end
 
-@protocol DragAndDropTableViewDelegate <NSObject>
+@protocol LYLDragAndDropTableViewDelegate <NSObject>
 @optional
 /** 
  Tells the delegate that the table view cell is about to be moved. The cell is actually hidden and instead a snapshot of the cell is moved which is provided by the placeholderImageView.
@@ -39,7 +39,7 @@
  @param indexPath The indexpath of the cell which is about to be moved.
  @param placeHolderImageView The snapshot of the cell.
 */
--(void)tableView:(DragAndDropTableView *)tableView willBeginDraggingCellAtIndexPath:(NSIndexPath *)indexPath placeholderImageView:(UIImageView *)placeHolderImageView;
+-(void)tableView:(LYLDragAndDropTableView *)tableView willBeginDraggingCellAtIndexPath:(NSIndexPath *)indexPath placeholderImageView:(UIImageView *)placeHolderImageView;
 /**
  Tells the delegate that the dragged table view cell has been dropped.
  
@@ -48,7 +48,7 @@
  @param toIndexPath The destination indexpath where the cell was dropped.
  @param placeholderImageView The snapshot of the cell.
 */
--(void)tableView:(DragAndDropTableView *)tableView didEndDraggingCellAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)toIndexPath placeHolderView:(UIImageView *)placeholderImageView;
+-(void)tableView:(LYLDragAndDropTableView *)tableView didEndDraggingCellAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)toIndexPath placeHolderView:(UIImageView *)placeholderImageView;
 
 /**
  Tells the delegate that the dragged table view cell has been dropped. 
@@ -58,7 +58,7 @@
  @param toIndexPath The new indexpath where the cell was dropped.
  @param placeholderImageView The snapshot of the cell.
  */
--(void)tableView:(DragAndDropTableView *)tableView didEndDraggingCellToIndexPath:(NSIndexPath *)toIndexPath placeHolderView:(UIImageView *)placeholderImageView __deprecated;
+-(void)tableView:(LYLDragAndDropTableView *)tableView didEndDraggingCellToIndexPath:(NSIndexPath *)toIndexPath placeHolderView:(UIImageView *)placeholderImageView __deprecated;
 
 /**
  Asks the delegate for the height of the distance between the header view and footer view of an empty section.
@@ -66,10 +66,10 @@
  @param tableView The table view requesting this information.
  @param section The location of the section
 */
--(CGFloat)tableView:(DragAndDropTableView *)tableView heightForEmptySection:(NSInteger)section;
+-(CGFloat)tableView:(LYLDragAndDropTableView *)tableView heightForEmptySection:(NSInteger)section;
 @end
 
-@interface DragAndDropTableView : UITableView<UITableViewDataSource>
+@interface LYLDragAndDropTableView : UITableView<UITableViewDataSource>
 {
     UIGestureRecognizer *_dndLongPressGestureRecognizer;
     
