@@ -35,7 +35,7 @@
         for (int j = 0; j < 10; j++) {
             LYLDataModel *dataModel = [LYLDataModel new];
             dataModel.title = [NSString stringWithFormat:@"sourceSection:%d row%d", i + 1, j + 1];
-            dataModel.message = [NSString stringWithFormat:@"message%d", j + 1];
+            dataModel.message = [NSString stringWithFormat:@"msg%d", j + 1];
             
             [tmpModels addObject:dataModel];
             
